@@ -8,6 +8,7 @@ import ProfilePost from './ProfilePost';
 // import ProfileFollowers from './ProfileFollowers';
 // import ProfileFollowing from './ProfileFollowing';
 import ProfileFollow from './ProfileFollow';
+import NotFound from './NotFound';
 
 function Profile() {
   const { username } = useParams();
@@ -131,6 +132,8 @@ function Profile() {
       draft.stopFollowingRequestCount++;
     });
   }
+
+  if (!state.profileData) return <NotFound />;
 
   return (
     <Page title="Profile screen">
