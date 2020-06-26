@@ -1,14 +1,27 @@
 import React, { useEffect, useState, useContext } from 'react';
 import Axios from 'axios';
+import ReactTooltip from 'react-tooltip';
 import DispatchContext from '../DispatchContext';
 
 function HeaderLoggedOut(props) {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
+  const [inputClass, setInputClass] = useState();
+  const [passwordClass, setPasswordClass] = useState();
   const appDispatch = useContext(DispatchContext);
 
   async function handleSubmit(e) {
     e.preventDefault();
+    if (!username || !username.trim()) {
+      console.log('Cant leave username black');
+      setInputClass('is-invalid');
+      return;
+    }
+    if (!password || !password.trim()) {
+      console.log('Cant leave password black');
+      setPasswordClass('is-invalid');
+      return;
+    }
     try {
       const response = await Axios.post('/login', {
         username,
@@ -40,20 +53,24 @@ function HeaderLoggedOut(props) {
         <div className="col-md mr-0 pr-md-0 mb-3 mb-md-0">
           <input
             name="username"
-            className="form-control form-control-sm input-dark"
+            className={'form-control form-control-sm input-dark ' + inputClass}
             type="text"
             placeholder="Username"
             autoComplete="off"
-            onChange={e => setUsername(e.target.value)}
+            onChange={e => {
+              setUsername(e.target.value), setInputClass('');
+            }}
           />
         </div>
         <div className="col-md mr-0 pr-md-0 mb-3 mb-md-0">
           <input
             name="password"
-            className="form-control form-control-sm input-dark"
+            className={'form-control form-control-sm input-dark ' + passwordClass}
             type="password"
             placeholder="Password"
-            onChange={e => setPassword(e.target.value)}
+            onChange={e => {
+              setPassword(e.target.value), setPasswordClass('');
+            }}
           />
         </div>
         <div className="col-md-auto">
