@@ -37,10 +37,18 @@ function HeaderLoggedOut(props) {
 
         // setLoggedIn(true);
         appDispatch({ type: 'login', data: response.data });
-        appDispatch({ type: 'flashMessage', value: 'Welcome back to Complex App' });
+        appDispatch({
+          type: 'flashMessage',
+          value: 'Welcome back to Complex App',
+          status: 'success',
+        });
       } else {
         // console.log('invalid credentials');
-        appDispatch({ type: 'flashMessage', value: 'Invalid username / password' });
+        appDispatch({
+          type: 'flashMessage',
+          value: 'Invalid username / password',
+          status: 'error',
+        });
       }
     } catch (error) {
       console.log('error', error.response.data);

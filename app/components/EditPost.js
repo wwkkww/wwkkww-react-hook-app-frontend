@@ -96,7 +96,7 @@ function EditPost(props) {
           dispatch({ type: 'fetchComplete', value: response.data });
 
           if (appState.user.username !== response.data.author.username) {
-            appDispatch({ type: 'flashMessage', value: 'Unauthorized access' });
+            appDispatch({ type: 'flashMessage', value: 'Unauthorized access', status: 'error' });
             props.history.push('/');
           }
         } else {
@@ -134,7 +134,11 @@ function EditPost(props) {
           // setPost(response.data);
           // setIsLoading(false);
 
-          appDispatch({ type: 'flashMessage', value: 'Post was updated successfully' });
+          appDispatch({
+            type: 'flashMessage',
+            value: 'Post was updated successfully',
+            status: 'success',
+          });
         } catch (error) {
           console.log('error', error);
         }

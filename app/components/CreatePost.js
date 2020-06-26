@@ -23,7 +23,7 @@ function CreatePost(props) {
       console.log('Post created', response);
 
       // addFlashMessage('Post created successfully');
-      appDispatch({ type: 'flashMessage', value: 'Post created successfully' });
+      appDispatch({ type: 'flashMessage', value: 'Post created successfully', status: 'success' });
 
       // redirect to new post url
       props.history.push(`/post/${response.data}`);
@@ -46,7 +46,7 @@ function CreatePost(props) {
             type="text"
             placeholder=""
             autoComplete="off"
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={e => setTitle(e.target.value)}
           />
         </div>
 
@@ -59,7 +59,7 @@ function CreatePost(props) {
             id="post-body"
             className="body-content tall-textarea form-control"
             type="text"
-            onChange={(e) => setBody(e.target.value)}
+            onChange={e => setBody(e.target.value)}
           ></textarea>
         </div>
 

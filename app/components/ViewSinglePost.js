@@ -69,7 +69,11 @@ function ViewSinglePost(props) {
 
         if (response.data === 'Success') {
           // display success flash msg
-          appDispatch({ type: 'flashMessage', value: 'Post was successfully deleted' });
+          appDispatch({
+            type: 'flashMessage',
+            value: 'Post was successfully deleted',
+            status: 'success',
+          });
           // redirect to post page
           props.history.push(`/profile/${appState.user.username}`);
         }

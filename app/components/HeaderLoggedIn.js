@@ -14,7 +14,7 @@ function HeaderLoggedIn(props) {
     // localStorage.removeItem('complexappAvatar');
     // setLoggedIn(false);
     appDispatch({ type: 'logout' });
-    appDispatch({ type: 'flashMessage', value: 'You have successfully logout' });
+    appDispatch({ type: 'flashMessage', value: 'You have successfully logout', status: 'success' });
   }
 
   function handleSearchIcon(e) {

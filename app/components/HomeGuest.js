@@ -210,7 +210,11 @@ function HomeGuest() {
             { cancelToken: ourRequest.token }
           );
           appDispatch({ type: 'login', data: response.data });
-          appDispatch({ type: 'flashMessage', value: 'Congrats. Welcome to Complex App' });
+          appDispatch({
+            type: 'flashMessage',
+            value: 'Congrats. Welcome to Complex App',
+            status: 'success',
+          });
         } catch (error) {
           console.log('error fetch result', error);
         }

@@ -51,6 +51,7 @@ function Main() {
   const initialState = {
     loggedIn: Boolean(localStorage.getItem('complexappToken')),
     flashMessages: [],
+    flashMessageStatus: '',
     user: {
       token: localStorage.getItem('complexappToken'),
       username: localStorage.getItem('complexappUsername'),
@@ -77,6 +78,7 @@ function Main() {
         return;
       case 'flashMessage':
         draft.flashMessages.push(action.value); // we can modify the array now
+        draft.flashMessageStatus = action.status;
         return;
       case 'openSearch':
         draft.isSearchOpen = true;
@@ -125,7 +127,7 @@ function Main() {
     <StateContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
         <BrowserRouter>
-          <FlashMessages messages={state.flashMessages} />
+          <FlashMessages messages={state.flashMessages} status={state.flashMessageStatus} />
           <Header />
           <Suspense fallback={<LoadingDotsIcon />}>
             <Switch>
